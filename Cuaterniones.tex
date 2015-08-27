@@ -1,0 +1,1444 @@
+\documentclass[a4paper, 12pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%Paquetes
+\usepackage[spanish]{babel}  
+\usepackage{indentfirst} %%%%%%%%%%%%%%%%Crear un indent al principio
+\usepackage[latin1]{inputenc}%%%%%%%%%%%%ñ y acentos
+\usepackage{amstext}%%%%%%%%
+\usepackage{amsfonts}%%%%%%%
+\usepackage{amssymb}%%%%%%%% AMSLaTeX
+\usepackage{amscd}%%%%%%%%%%
+\usepackage{amsmath}%%%%%%%%
+\usepackage{enumerate}%%%%%%%%%%%%%%%%Mejoras del entorno enumerate
+\usepackage[all]{xy}
+\usepackage{latexsym}
+\usepackage{color}
+\usepackage[mathcal]{eucal}%%%%%%%Caligrafica matematica
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{tcolorbox}
+\usepackage{setspace}
+\onehalfspacing
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%Teoremas
+\newtheorem{teo}{Teorema}[section]%%%%%%%%% Teorema
+\newtheorem{defi}{Definición}[section]%%%%%%%% Definicion
+\newtheorem{lema}[teo]{Lema}%%%%%%%%%%%%% Lema
+\newtheorem{propo}[teo]{Proposición}%%%%%%%% Proposicion
+\newtheorem{cor}[teo]{Corolario}%%%%%%%%%%%Corolario
+\newtheorem{pro1}{Problema}%[chapter]%%%%%%%%%Problema
+\newenvironment{pro}{\begin{pro1} \sf \small} {\end{pro1}}
+\newtheorem{*pro1}[pro1]{* Problema}%%%%%%%%%%Problema complicado
+\newenvironment{*pro}{\begin{*pro1} \sf} {\end{*pro1}}
+\newcommand{\escalar}[2]{\left\langle\, #1,#2\, \right\rangle}  %%%Producto escalar 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%Comandos
+\newcommand{\dem}{\noindent\textbf{Demostración. }\vspace{0.3 cm}}%%Demostracion
+\newcommand{\R}{\mathbb{R}}%%%%%%%%%%%%Numeros reales
+\newcommand{\K}{\mathbb{K}}%%%%%%%%%%%%Numeros reales
+\newcommand{\F}{\mathbb{F}}%%%%%%%%%%%%Cuerpo
+\newcommand{\cua}{\mathbb{H}}%%%%%%%%%%%%Cuaterniones
+\newcommand{\C}{\mathbb{C}}%%%%%%%%%%%%Numeros complejos
+\newcommand{\Q}{\mathbb{Q}}%%%%%%%%%%%%Numeros racionales
+\newcommand{\N}{\mathbb{N}}%%%%%%%%%%%%Numeros naturales
+\newcommand{\Z}{\mathbb{Z}}%%%%%%%%%%%%Numeros enteros
+\newcommand{\g}{\mathfrak{g}}%%%%%%%%%%%%Algebra de Lie del grupo G
+\newcommand{\V}{\mathcal{V}}%%%%%%%%%%%%Variedad
+\newcommand{\W}{\mathcal{W}}%%%%%%%%%%%%Variedad
+\newcommand{\coZ}{Z}%%%%
+\newcommand{\coB}{B}%%%%  Cohomologia
+\newcommand{\coH}{H}%%%%
+\newcommand{\h}{\mathcal{H}}%%%%%%%%%%%%Algebra de Lie del grupo H
+\newcommand{\fin}{ $\Box $ \vspace{0.4 cm}}
+\newcommand{\p}{\mathfrak{p}}%%%%%%%% Ideal primo
+\newcommand{\m}{\mathfrak{m}}%%%%%%%% Ideal maximal
+\newcommand{\limind}{\lim_{\longrightarrow} } 
+\newcommand{\gp}{\mathcal{G'}}%%%%%%%%%%%Algebra del grupo G'
+\newcommand{\lto}{\longrightarrow}%%%%%%Simplificacion de la flecha larga
+\newcommand{\wa}{\omega_2} %%%%%%%%%%%forma simplectica
+\newcommand{\Wa}{\Omega_2} %%%%%%%%%% forma simplectica lineal
+\newcommand{\lag}{\lambda_g}%%%%%%%%%%%%Traslacion a la izquierda
+\newcommand{\rg}{\rho_g}%%%%%%%%%%%%%%%%Traslacion a la derecha
+\newcommand{\Gr}{\boldsymbol{G}}%%%%%%%%%%Recubridor universal
+\newcommand{\norma}[1]{\: \parallel #1 \!\parallel\! }%%%Norma de un vector
+\newcommand{\abs}[1]{\left|\, #1 \right|}  %%%Valor absoluto 
+\newcommand{\Pro}{\mathbb{P}}%%%%%%Espacio proyectivo
+\newcommand{\Problemas}{\newpage  \begin{center}{\Huge Problemas}\end{center}}
+\newcommand{\Ejemplos}{\vspace{0.5 cm} {\bf Ejemplos}}
+\newcommand{\cpt}{\textit{cpt}}  %%%%%Casi por todo
+\newcommand{\campos}{\mathfrak{X} } %%%% Campos en una variedad
+\newcommand{\kulkarni}{\varowedge}   %%%producto de Kulkarni
+\newcommand{\traza}{\mathrm{Tr}}  %%% Traza
+\newcommand{\WS}{W\!\!S}
+\renewcommand{\to}{\lto}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%Operadores
+\DeclareMathOperator{\End}{End}%%%%%%%%%%Endomorfismo
+\DeclareMathOperator{\Ad}{Ad}%%%%%%%%%%Adjunta
+\DeclareMathOperator{\grad}{grad}%%%%%%%%%%Graciente
+\DeclareMathOperator{\Dif}{Dif}%%%%%%%%%%Diferenciales
+\DeclareMathOperator{\sop}{sop}%%%%%%%%%Soporte
+\DeclareMathOperator{\distancia}{d}%%%%%%%%Distancia
+\DeclareMathOperator{\sen}{sen}%%%%%%%%%%Seno español
+\DeclareMathOperator{\Der}{Der}%%%%%%%%%%Derivaciones
+\DeclareMathOperator{\rang}{rang}%%%%%%%%Rango
+\DeclareMathOperator{\Hom}{Hom}%%%%%%Homomorfismos
+\DeclareMathOperator{\Ann}{Ann}%%%%%%%Anulador
+\DeclareMathOperator{\Img}{Im} %%%%Parte imaginaria
+\DeclareMathOperator{\rad}{rad}%%%%%%%%Radical
+\DeclareMathOperator{\Ker}{Ker}%%%%%%%Nucleo
+\DeclareMathOperator{\Id}{Id}%%%%%%% Identidad
+\DeclareMathOperator{\GL}{GL}%%%%%%%%%Grupo lineal
+\DeclareMathOperator{\Apli}{Apli}%%%%%%Aplicaciones
+\DeclareMathOperator{\Bil}{Bil}%%%%%Bilineales
+\DeclareMathOperator{\Spec}{Spec}%%%%Espectro
+\DeclareMathOperator{\Ob}{Ob}  %%% Objetos de una categoría
+\DeclareMathOperator{\Tor}{Tor}%%%%%Torsion de una conexión lineal
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%
+\title{Cuaterniones}
+\author{José Luis Tábara}
+\date{jltabara@gmail.com}
+%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+
+\vspace{-1cm}
+\maketitle
+
+\end{tcolorbox}
+
+\thispagestyle{empty}
+
+\tableofcontents
+
+\newpage
+
+
+
+\section{Introducción}
+
+\thispagestyle{empty}
+
+\begin{defi}
+
+Sean $k$ y $K$ dos cuerpos no necesariamente conmutativos.  Llamamos {\sf extensión de cuerpos} a cualquier morfismo de cuerpos $\varphi: k \rightarrow K$, y lo denotamos $k \hookrightarrow K$.
+
+\end{defi}
+
+Como un morfismo de cuerpos siempre es inyectivo, podemos suponer, sin pérdida de generalidad,  que $k$ es un subcuerpo de $K$.
+
+
+Dada una extensión de cuerpos $k \hookrightarrow K$, el cuerpo $K$ adquiere una estructura de espacio vectorial sobre el subcuerpo $k$, realizando la multiplicación de escalares por la izquierda
+$$
+\begin{array}{ccc}
+k \times K & \rightarrow & K \\
+(\lambda, a) & \rightarrow & \lambda \cdot a
+\end{array}
+$$
+
+
+
+  Llamamos {\sf grado} de la extensión, y denotamos $[K:k]$, a la dimensión del $k$-espacio vectorial $K$. Decimos que la extensión es finita, si el grado de la extensión es finito.
+
+\bigskip
+
+La extensión $\R \hookrightarrow \C$ es de grado $2$ y por lo tanto finita. Sin embargo $\C$ carece de extensiones finitas y conmutativas.
+
+ \begin{propo}
+
+ Si $\C \hookrightarrow K$ es una extensión finita y $K$ es conmutativo, la extensión debe de ser de grado $1$ y por lo tanto $\C$ coincide con $K$. 
+ 
+ \end{propo}
+ 
+ \dem
+ 
+ Sea $a \in K$. Consideremos la aplicación 
+ $$
+ \begin{array}{cccc}
+ \phi_a: & \C[x] & \rightarrow & K \\
+     & p(x)& \rightarrow & p(a)
+     \end{array}
+ $$
+ Dicha aplicación es un morfismo de anillos (debido a que $K$ es conmutativo).  Como el anillo de polinomios es un espacio vectorial de dimensión infinita, la aplicación no puede ser inyectiva. El ideal que forma su núcleo está generado por un polinomio.  Como $K$ es un cuerpo, necesariamente el polinomio generador es irreducible.  Al ser $\C$ algebraicamente cerrado, dicho polinomio es de la forma $x-z$ con $z \in \C$. Pero entonces 
+ $$
+ \phi_a(x-z)=0 \quad \Rightarrow \quad a-z=0
+ $$
+  y ambos cuerpos coinciden. \fin 
+  
+  \noindent{\bf Observación.}
+  
+  \smallskip
+  
+  El generador del núcleo de $\phi_a$ es lo que habitualmente se denomina {\sf polinomio mínimo de $a$}.  Todo elemento de una extensión finita posee polinomio mínimo.  \fin 
+ 
+ Por lo tanto las únicas extensiones finitas de $\C$ deben de ser  no conmutativas.   A mediados del siglo {\sc xix}   Hamilton descubrió una extensión finita de $\C$, que es el cuerpo de los cuaterniones. Posteriormente Frobenius demostró que, salvo isomorfismos, esa era la única extensión finita de los complejos. 
+ 
+ 
+ \section{El modelo matricial}
+
+Existen muchos métodos distintos para construir el cuerpo de los cuaterniones. Cada uno de estos métodos dará lugar a un modelo. Evidentemente se puede tomar un único modelo y deducir de él todas las propiedades. Sin embargo, cierto tipo de propiedades parecen adecuarse más a un modelo que a otro.  Es por ello que nosotros, en contra de la norma habitual, seguiremos el ``camino de espinas'' y realizaremos distintas construcciones del cuerpo cuaternionico, demostrando, eso sí, que todas son isomorfas.
+
+\bigskip
+
+Consideremos el subconjunto
+$$
+\cua= 
+\left\{
+ \begin{pmatrix} 
+a & b \\
+-\overline{b}& \overline{a}
+\end{pmatrix}
+\in M_2(\C)\text{  con  } a, b \in \C\right\} 
+$$
+La suma y el producto de elementos de $\cua$ es nuevamente un elemento de $\cua$. Por lo tanto $\cua$ es un anillo. Veamos que todo elemento no nulo es invertible.  El determinante de un elemento
+$$
+\det
+ \begin{pmatrix} 
+a & b \\
+-\overline{b}& \overline{a}
+\end{pmatrix}
+= a\overline{a}+b\overline{b}= \abs{a}^2+\abs{b}^2
+$$
+es no nulo si la matriz es no nula.  La matriz inversa es
+$$
+ \begin{pmatrix} 
+a & b \\
+-\overline{b}& \overline{a}
+\end{pmatrix}^{-1}= \frac{1}{\abs{a}^2+\abs{b}^2}
+ \begin{pmatrix} 
+\overline{a} & -b \\
+\overline{b}& a
+\end{pmatrix}
+$$
+que es también  un elemento de $\cua$.
+
+\begin{defi}
+
+Llamamos {\sf cuerpo de los cuaterniones} al conjunto $\cua$ dotado de la suma y el producto matriciales.
+
+\end{defi}
+
+Este será nuestro primer modelo de $\cua$.  Lo llamaremos {\sf modelo matricial}. Utilizando este modelo se pueden deducir, de modo sencillo, algunos resultados referentes a $\cua$ y a la relación que guarda este nuevo cuerpo con el cuerpo real y el complejo.
+
+
+\bigskip
+
+\noindent{\bf Propiedades.}
+
+\begin{itemize}
+
+\item Tomando dos elementos arbitrarios se observa que, en general, el producto no es conmutativo.
+
+
+\item La aplicación de $\R$ en $\cua$ que manda al número real $\lambda$ al cuaternión $\lambda \Id$ es un morfismo inyectivo de anillos.  Como el anillo de matrices es un espacio vectorial de dimensión finita, la extensión $\R \hookrightarrow \cua$ es de grado finito.
+
+\item Los múltiplos reales de la identidad conmutan con todos los elementos de~$\cua$.  Es más, si $q $ conmuta con todos los elementos de $\cua$, entonces $q = \lambda \mathrm{Id}$ con $\lambda \in \R$ (realizar la comprobación en dos casos: el primero con $a=i$ y $b=0$ y el segundo con $a=0$ y $b=1$).  Hemos demostrado que el centro de $\cua$ es un cuerpo isomorfo a $\R$.
+
+
+
+\end{itemize}
+
+
+De la misma forma que hemos inyectado $\R$ en $\cua$, intentamos inyectar el cuerpo complejo. Para ello consideramos el morfismo natural del cuerpo en su anillo de matrices
+$$
+z \rightarrow z\Id= \begin{pmatrix} 
+z& 0 \\
+0& z
+\end{pmatrix}
+$$
+Sin embargo, la imagen de este morfismo no está contenida en $\cua$.  Por ello construimos otro morfismo
+$$
+z \rightarrow  \begin{pmatrix} 
+z& 0 \\
+0& \overline{z}
+\end{pmatrix}
+$$
+Este es un morfismo de anillos inyectivo y su imagen si está contenida en $\cua$.  Da lugar entonces a una extensión $\C \hookrightarrow \cua$ que nuevamente es de grado finito.
+  Via este nuevo morfismo podemos considerar que $\C \subset \cua$.  Naturalmente la inclusión anterior de $\R$ en los cuaterniones es la restricción de esta nueva inclusión. 
+  
+\section{El modelo complejo}
+  
+  
+  Teniendo en cuenta estas inclusiones, podemos dotar a $\cua$ de una estructura de espacio vectorial real o complejo, realizando la multiplicación de escalares por la izquierda.  En el caso real es indiferente que la multiplicación se realice  por la derecha o por la izquierda, puesto que $\R$ está contenido en el centro de $\cua$.  Sin embargo en el caso complejo es fundamental, pues si multiplicamos por la derecha obtenemos otra estructura de espacio vectorial.
+  
+  
+  \bigskip
+  
+  Consideremos las matrices
+$$
+1=
+\begin{pmatrix}
+ 1 & 0 \\
+0& 1
+\end{pmatrix}
+\qquad j= 
+\begin{pmatrix}
+0 & 1 \\
+-1 & 0
+\end{pmatrix}
+$$
+Veamos que el par de matrices anteriores forma una base del espacio vectorial complejo. La independencia lineal es clara y además tenemos que 
+$$
+a+bj= \begin{pmatrix}
+a & 0\\
+0 &\overline{a} 
+\end{pmatrix}
+ \begin{pmatrix}
+1 & 0\\
+0 &1 
+\end{pmatrix}+
+ \begin{pmatrix}
+b & 0\\
+0& \overline{b} 
+\end{pmatrix}
+ \begin{pmatrix}
+0 & 1\\
+-1 &0 
+\end{pmatrix}=
+ \begin{pmatrix}
+a & b\\
+-\overline{b}& \overline{a} 
+\end{pmatrix}
+$$
+Por lo tanto todo cuaternión se puede escribir de modo único como una expresión de la forma $a+bj$.  Este será nuestro segundo modelo de los cuaterniones, que lo llamaremos {\sf modelo complejo}.  
+
+\bigskip
+
+Para trabajar con este modelo debemos indicar cuales son las operaciones de suma y producto. La suma se realiza componente a componente
+$$
+(a+bj)+(c+dj)= (a+c)+(d+b)j
+$$
+Para introducir la multiplicación basta con indicar dos reglas simples, que son las llamadas
+
+\bigskip
+
+
+\noindent{\bf Reglas de conmutación.}
+
+\begin{itemize}
+
+\item $j^2=-1$
+
+\item $zj = j \overline{z}$ donde $\overline{z} $ es el complejo conjugado de $z$.
+
+\end{itemize}
+Aplicando estas reglas, la multiplicación de dos cuaterniones es
+\begin{equation*}
+\begin{split}
+(a+bj)\cdot (c+dj)= ac+adj+bjc+bjdj= \\ac+adj+b\overline{c}j+bjj\overline{d}= (ac-b\overline{d})+(ad+b\overline{c})j
+\end{split}
+\end{equation*}
+
+En realidad, la suma y el producto los hemos introducido para que sea cierto el siguiente
+
+\begin{cor}
+
+La aplicación
+$$
+a+bj\rightarrow \begin{pmatrix}
+a & b\\
+-\overline{b}& \overline{a} 
+\end{pmatrix}
+$$
+es un isomorfismo de cuerpos entre el modelo complejo y el modelo matricial.
+
+\end{cor}
+
+
+
+
+\section{El modelo real}
+
+
+De modo similar, si consideramos en  $\cua$ la estructura de espacio vectorial real tenemos la {\sf base estandard}
+$$
+1=
+\begin{pmatrix}
+ 1 & 0 \\
+0& 1
+\end{pmatrix}
+\qquad i= 
+\begin{pmatrix}
+i & 0 \\
+0 & -i
+\end{pmatrix}
+\qquad
+j=
+\begin{pmatrix}
+ 0 & 1 \\
+-1& 0
+\end{pmatrix}
+\qquad k= 
+\begin{pmatrix}
+0 & i \\
+i & 0
+\end{pmatrix}
+$$
+Todo cuaternión se escribe de modo único como
+$$
+q= a+bi+cj+dk \text{ con } a,b,c,d \in \R
+$$
+Este es nuestro tercer modelo de $\cua$ y es con el que inicialmente trabajó Hamilton.  Lo llamaremos {\sf modelo real} o {\sf modelo hamiltoniano}. Utilizando las propiedades de las matrices $\{i,j,k\}$ proponemos las siguientes
+
+\bigskip
+
+\noindent{\bf Reglas de conmutación.}
+
+\begin{itemize}
+
+\item $i^2= j^2=k^2=-1$
+
+\item $ij=-ji=k; \quad jk=-kj=i; \quad ki=-ik=j$
+
+\end{itemize}
+Como los elementos de $\R$ pertenecen al centro, con estas reglas podemos realizar la multiplicación de cualquier par de cuaterniones. Operando, observamos que
+$$
+q=a+bi+cj+dk=
+\begin{pmatrix}
+a+bi & c+di\\
+-c+di& a-bi
+\end{pmatrix}= (a+bi)+ (c+di)j
+$$
+que nos proporciona el isomorfismo entre el modelo real y el resto de modelos.
+
+\bigskip
+
+\noindent{\bf Observación.}
+
+\smallskip
+
+En algunos casos la letra $i$ indica una matriz y en otros indica la unidad imaginaria.  No existe peligro de confusión, puesto que al inyectar $\C$ en $\cua$ a la unidad imaginaria $i$ le corresponde la matriz $i$.\fin
+
+\section{El modelo vectorial}
+
+La notación empleada sugiere que todo cuaternión se puede escribir, formalmente, como la suma de un escalar y de un vector tridimensional del espacio euclídeo
+$$
+q= a+\mathbf{v} \text{ donde } \mathbf{v} \text{ es el vector } bi+cj+dk
+$$
+Este es el {\sf modelo vectorial}\index{modelo!vectorial} de $\cua$. La multiplicación de dos cuaterniones se realiza en este modelo mediante la fórmula
+$$
+(a+\mathbf{u})\cdot(b+\mathbf{v})= (ab-\escalar{\mathbf{u}}{\mathbf{v}})+(a\mathbf{v}+b\mathbf{u}+\mathbf{u}\wedge \mathbf{v})
+$$
+donde tanto el producto escalar como el vectorial son los canónicos ($\{i,j,k\}$ es una base ortonormal orientada positivamente). La comprobación de esta fórmula se puede realizar fácilmente utilizando el modelo real.  No nos debe extrañar la aparición de un producto vectorial, pues las reglas de conmutación de los cuaterniones $\{i, j, k\}$ son idénticas a las propiedades que verifican los vectores unitarios respecto al producto vectorial. La aparición de un producto escalar con signo negativo está asociada a la reglas que proporcionan los cuadrados de los elementos de la base.
+
+\bigskip
+ 
+En particular, si los dos cuaterniones tienen únicamente parte vectorial
+$$
+\mathbf{u}\cdot\mathbf{v}=-\escalar{\mathbf{u}}{\mathbf{v}}+\mathbf{u}\wedge\mathbf{v}
+$$
+que nos indica la gran relación existente entre el producto de cuaterniones y la estructura de espacio euclídeo tridimensional. Utilizando este resultado  se deducen una serie de 
+
+\bigskip
+
+\noindent{\bf Propiedades.}
+
+\begin{itemize}
+
+
+\item Podemos construir el producto escalar de dos vectores tridimensionales a partir de la multiplicación de cuaterniones
+$$
+\escalar{\mathbf{u}}{\mathbf{v}}=- \frac{\mathbf{u} \cdot \mathbf{v}+ \mathbf{v}\cdot \mathbf{u}}{2} 
+$$
+El módulo del vector se calcula con
+$$
+\norma{\mathbf{u}}\,\,=  \sqrt{ - \mathbf{v} \cdot \mathbf{v}}
+$$
+
+\item Lo mismo se puede hacer con el producto vectorial
+$$
+\mathbf{u} \wedge \mathbf{v}= \frac{\mathbf{u} \cdot \mathbf{v} -\mathbf{v}\cdot \mathbf{u}}{2}
+$$
+
+\item Con las dos propiedades anteriores también se puede construir el producto mixto
+$$
+[\mathbf{u},\mathbf{v},\mathbf{w}]=\frac{\mathbf{w} \cdot \mathbf{v} \cdot \mathbf{u}- \mathbf{u} \cdot \mathbf{v} \cdot \mathbf{w} }{2}
+$$
+
+\item Si los vectores $u$ y $v$ son ortonormales, su producto es un cuaternión que posee únicamente parte vectorial. Los vectores $\mathbf{u}, \mathbf{v}, \mathbf{w}=\mathbf{u} \cdot \mathbf{v}$ forman una base ortonormal y positivamente orientada. Además cumplen unas reglas de conmutación similares a las que cumplen los cuaterniones $\{i,j,k\}$.
+
+
+
+\end{itemize}
+
+
+\section{Conjugación y estructura euclídea}
+
+
+A la hora de dar definiciones intentaremos no utilizar ningún modelo específico. Pero otras veces necesitamos recurrir a un modelo. Cuando hagamos esto veremos cual es la definición adecuada en los otros modelos.  La cuestión de elegir un modelo u otro en muchos casos es simplemente la comodidad.
+
+\begin{defi}
+
+Dado $q=\left(
+\begin{smallmatrix}
+a & b \\
+-\overline{b}& \overline{a}
+\end{smallmatrix}\right)
+$ llamamos {\sf congujado}, y denotamos $\overline{q}$, a la matriz traspuesta conjugada
+$$
+\overline{q}= q^*= \begin{pmatrix}
+\overline{a}& -b \\
+\overline{b}& a
+\end{pmatrix}
+$$
+\end{defi}
+
+La conjugación cuaternionica guarda una estrecha relación con la conjugación habitual en el campo complejo. Muchas de las propiedades son generalizaciones directas del caso complejo. Todas se deducen de modo natural utilizando las propiedades de las matrices traspuestas conjugadas.
+
+
+\bigskip
+
+\noindent{\bf Propiedades.}
+
+\begin{itemize}
+
+\item Si $q \in \cua$ entonces $\overline{q} \in \cua$. Además $\overline{q+r}= \overline{q}+\overline{r}$. 
+
+\item $\overline{q\cdot r}= (q\cdot r)^*= r^*\cdot q^* =\overline{r}\cdot \overline{q}\,\, $ aplicando la conocida propiedad de la trasposición.  La conjugación $q \rightarrow \overline{q}$ es un antimorfismo de anillos.
+
+\item $\overline{\overline{q}}= (q^*)^* =q$.  La conjugación es involutiva.  Es inyectiva y epiyectiva.
+
+\item Si $q \in \C\subset \cua$ esta conjugación coincide con la conjugación compleja.  No puede existir confusión entre las dos, a pesar de que denoten del mismo modo.
+
+
+\end{itemize}
+
+ Si $q= a +b\cdot j$ entonces 
+$$
+\overline{q}= \overline{a}+\overline{b\cdot j}= \overline{a}+ \overline{j}\cdot \overline{b} = \overline{a}-b\cdot j
+$$
+donde hemos utilizado que $\overline{j}= -j$ y las reglas de conmutación. Ya sabemos como se realiza la conjugación en el modelo complejo.  Pasando al modelo real, si
+$$
+q= a+bi+cj+dk \quad \Rightarrow \quad\overline{q}= a-bi-cj-dk
+$$
+puesto que $\overline{i} = -i$, $ \overline{j}=-j$ y $\overline{k}= -k$ y que la conjugación sobre los reales es la identidad. En el modelo vectorial
+$$
+q=a+\mathbf{v}\quad \Rightarrow \quad \overline{q}=a-\mathbf{v}
+$$
+
+
+
+
+
+\begin{defi}
+
+Llamamos {\sf norma} de un cuaternión $q$ a
+$$
+N(q)=  q\overline{q}
+$$
+
+\end{defi}
+
+La definición introducida utiliza únicamente el concepto de conjugación y es independiente del modelo.  Ahora particularizaremos en cada uno de los modelos conocidos
+
+Si $q = a+bj$ operando se obtiene que 
+$$
+N(q)= (a+bj)(\overline{a}-bj)= a \overline{a}-abj+bj\overline{a}- bjbj
+$$
+Utilizando las reglas de conmutación, los dos términos intermedios se eliminan y el último término se transforma en $b \overline{b}$. Finalmente
+$$
+N(a+bj)= \abs{a}^2+\abs{b}^2
+$$
+Hemos probado que la norma de cualquier cuaternión es siempre un número real no negativo.
+
+
+\bigskip
+
+En los demás modelos se pueden realizar demostraciones análogas o bien utilizar el resultado conocido ya para el modelo complejo.  En el modelo matricial se tiene que
+$$
+N\begin{pmatrix}
+a & b \\
+-\overline{b}& \overline{a}
+\end{pmatrix}=
+\begin{pmatrix}
+\abs{a}^2+\abs{b}^2 & 0 \\
+0 & \abs{a}^2+\abs{b}^2
+\end{pmatrix}
+$$
+ en el modelo real
+$$
+N(a+bi+dj+dk)= a^2+b^2+c^2+d^2
+$$
+y en modelo vectorial
+$$
+N(a+\mathbf{v})= a^2+\escalar{\mathbf{v}}{\mathbf{v}}
+$$
+
+
+
+\bigskip
+
+\noindent{\bf Propiedades}
+
+
+\begin{itemize}
+
+
+
+\item $N(q)= 0$ si y solo si $q=0$ y además $N(q)=N(\overline{q})$ utilizando, por simplicidad, el modelo real.
+
+\item En el modelo matricial, la norma se puede calcular con determinantes
+$$
+N
+\begin{pmatrix}
+a & b \\
+-\overline{b}&\overline{a}
+\end{pmatrix} = a\overline{a}+ b\overline{b}= \det\begin{pmatrix}
+a & b \\
+-\overline{b}&\overline{a}
+\end{pmatrix}
+$$
+
+\item $N(qr) = N(q)N(r)$. Si trabajamos en el modelo matricial, esta propiedad se deriva del hecho de que $\det(AB)= \det(A) \det(B)$.
+
+\item Si $q$ es no nulo, construimos $q'= \overline{q}/N(q)$.  Observamos que
+$$
+q q'= q \frac{\overline{q}}{N(q)}= \frac{q\overline{q}}{N(q)}=1
+$$
+de donde $q^{-1}= \overline{q}/N(q)$, fórmula análoga a la  del análisis complejo.
+
+
+
+\end{itemize}
+
+
+\section{Estructura euclídea}
+
+
+Hemos visto que, en el modelo real, la norma de un cuaternión coincide con el cuadrado de la longitud del correspondiente vector de $\R^4$.  Esto permite introducir una estructura euclídea en $\cua$, definida a partir únicamente de la estructura algebraica del cuerpo cuaternionico.  Recordemos que conocida la norma de un espacio euclídeo, se puede recuperar el producto escalar utilizando la {\sf identidad de polarización}
+$$
+\escalar{x}{y}= \frac{\norma{x+y}^2-\norma{x}^2-\norma{y}^2}{2}
+$$
+Esto nos conduce a la siguiente 
+
+\begin{defi}
+
+Llamamos {\sf producto escalar} de dos cuaterniones a 
+$$
+\escalar{q}{r}= \frac{N(q+r)-N(q)-N(r)}{2}= \frac{q\overline{r}+r\overline{q}}{2}
+$$
+
+\end{defi}
+
+
+Respecto a este producto escalar, $\cua$ es un modelo de espacio euclídeo de dimensión cuatro. 
+
+\bigskip
+
+\noindent{\bf Propiedades.}
+
+\begin{itemize}
+
+
+\item Por construcción $N(q)= \escalar{q}{q}$.
+
+\item La base canónica es una base ortonormal. Comprobemos por ejemplo que $i$ es ortogonal con $j$
+$$
+\escalar{i}{j}=\frac{N(i+j)-N(i)- N(j)}{2}= \frac{2-1-1}{2}=0
+$$
+
+
+\item En el modelo matricial
+$$
+\escalar{q}{r}= \frac{1}{2}\mathrm{Tr}(q\overline{r})
+$$
+
+
+\end{itemize}
+
+
+
+
+\section{Partes real e imaginaria}
+
+
+\begin{defi}
+
+Llamamos {\sf parte real} de un cuaternión a 
+$$
+\mathrm{Re}(q)= \frac{q+ \overline{q}}{2}
+$$
+y {\sf parte imaginaria} a 
+$$
+\mathrm{Im}(q)=\frac{q-\overline{q}}{2}
+$$
+
+\end{defi}
+
+Por construcción, tenemos que $q= \mathrm{Re}(q)+\mathrm{Im}(q)$.  Los cuaterniones que no tienen parte real se dice que son {\sf imaginarios puros}.  Denotaremos por $\mathrm{Im}(\cua)$ al conjunto de cuaterniones imaginarios puros
+$$
+\mathrm{Im}(\cua)=\{ q \in\cua \text{ tales que } \mathrm{Re}(q)=0\}
+$$
+Es un subespacio vectorial real, pero no es un subespacio complejo. 
+
+\bigskip
+
+
+
+\noindent{\bf Propiedades.}
+
+\begin{itemize}
+
+
+\item $\mathrm{Re}(a+bi+cj+dk)= a$ e $ \mathrm{Im}(a+bi+cj+dk)=bi+cj+dk$. El subespacio de los cuaterniones imaginarios es de dimensión $3$ y es el ortogonal del eje real.
+
+
+\item $\mathrm{Re}(a+bj)= \mathrm{Re}(a)$.  El conjunto de los imaginarios puros en este modelo es
+$$
+\mathrm{Im}(\cua)= \{\lambda i +bj\text{ donde } \lambda \in \R \text{ y } b \in \C\}
+$$
+
+
+\item En el modelo matricial, podemos calcular la parte real con la fórmula
+$$
+\mathrm{Re}(q)= \frac{1}{2} \mathrm{Tr}(q)
+$$
+obteniendo 
+$$
+\mathrm{Re}
+\begin{pmatrix}
+a & b \\
+-\overline{b}& \overline{a}
+\end{pmatrix}
+= \frac{1}{2} (a+\overline{a})= \mathrm{Re}(a)
+$$  
+
+
+
+
+\item En el modelo vectorial, la parte imaginaria se identifica con la parte vectorial.  Por eso algunos autores llaman parte vectorial de un cuaternión a lo que nosotros llamamos parte imaginaria.
+
+\item Utilizando el modelo real es claro que
+$$
+\overline{(\mathrm{Re}(q)+\mathrm{Im}(q))}= \mathrm{Re}(q)-\mathrm{Im}(q)
+$$
+Entonces
+$$
+N(q)= q \overline{q}= (\mathrm{Re}(q)+\mathrm{Im}(q))(\mathrm{Re}(q)-\mathrm{Im}(q))= \mathrm{Re}(q)^2-\mathrm{Im}(q)^2
+$$
+puesto que las partes reales e imaginarias conmutan. Como tenemos siempre que $\mathrm{Re}(q)^2 \leq N(q)$, se tiene que $\mathrm{Im}(q)^2$ es siempre un número real negativo o nulo.  Solamente puede ser nulo si la parte imaginaria es nula.  Esto nos lleva a otra posible definición de cuaternión imaginario puro: {\it un cuaternión $q$ es imaginario puro si y solo si $q^2<0$.}
+
+\end{itemize}
+
+ 
+\newpage
+
+\section{Problemas}
+
+
+
+\begin{pro}
+
+Demostrar que si un cuaternión conmuta con $i$, con $j$ y con $k$, entonces necesariamente $q$ es un cuaternión real.
+
+\end{pro}
+
+  \begin{pro}
+  
+  Asignemos a cada cuaternión una matriz real de orden $4$
+  $$
+  q= a+bi+cj+dk \quad \rightarrow 
+  \begin{pmatrix}
+  a &-b & -c &-d\\
+  b &a &-d& c\\
+  c&d&a& -b\\
+  d&-c&b&a
+  \end{pmatrix}
+  $$
+  Este es otro modelo matricial de $\cua$ que generalmente no se emplea debido a su tamaño. Sin embargo puede ser útil cuando se estudian las rotaciones generadas por los cuaterniones.
+  
+  \end{pro}
+
+
+\begin{pro}
+
+Demostrar que $q$ y su conjugado tienen la misma norma.
+
+\end{pro}
+
+
+
+
+\begin{pro}
+
+Demostrar que $\mathrm{Re}(qr)=\mathrm{Re}(rq)$.  Calcular dicho valor en algún modelo.
+
+\end{pro}
+
+
+
+\begin{pro}
+
+Sean $q$ y $r$ dos cuaterniones imaginarios puros.  El producto $q\cdot r$ es imaginario puro si y solo si $q$ y $r$ son ortogonales (entendidos como vectores o como cuaterniones).  En este caso $qr$ es perpendicular tanto a $r$ como a $q$.
+
+\end{pro}
+
+\begin{pro}
+
+Consideremos la ecuación $x^2+1=0$ en el cuerpo de los cuaterniones.  La solución de esta ecuación forma una variedad bidimensional difeomorfa a $S^2$.  En general la ecuación $x^2=-r$ con $r \in \R^+$ tiene infinitas soluciones en $\cua$.  Sin embargo $x^2=r$ con $r \in\R^+$ tiene solamente dos soluciones.
+
+\end{pro}
+
+
+\begin{pro}
+
+Sea $\mathbf{n}$ un cuaternión imaginario y unitario.  Demostrar que la aplicación
+$$
+\begin{array}{ccc}
+\C & \rightarrow & \cua \\
+a+bi & \rightarrow & a+b\mathbf{n}
+\end{array}
+$$
+es un morfismo de cuerpos
+
+\end{pro}
+
+
+\begin{pro}
+
+Demostrar que $q \in \R \Leftrightarrow q= \overline{q}$ y que  $q \in \mathrm{Im}(\cua)\Leftrightarrow q = -\overline{q}$
+
+\end{pro}
+
+\newpage
+
+
+\section{Rotaciones}
+
+Para conocer totalmente una rotación de un plano euclídeo nos basta con un solo dato: el ángulo de rotación.  Describir las rotaciones del espacio euclídeo tridimensional es ligeramente más complicado. Para conocer una rotación tridimensional debemos conocer la recta que permanece invariante por la rotación. Es lo que se denomina el {\sf eje de la rotación}. Además debemos conocer el ángulo de giro que se produce en el plano perpendicular al eje de rotación.  Normalmente para especificar una recta tomamos un vector unitario, de los dos posibles.  Entonces, para especificar una rotación debemos dar un par $(\mathbf{u}, \alpha)$ donde $\mathbf{u}$ es un vector unitario y $\alpha$ un ángulo.  Debemos tener en cuenta que el par $(-\mathbf{u},  \alpha)$ describe la misma rotación.
+
+\bigskip
+
+Seguir con este procedimiento en dimensiones superiores o en geometrías distintas de la euclídea es sumamente tedioso.  Por ello se suele emplear la notación matricial.  Una rotación de un espacio euclídeo de cualquier dimensión es una matriz $M$ de determinante positivo que cumple $M \cdot M^t= \Id$. En otras geometrías el método es similar, pero en este caso la matriz debe cumplir $M \cdot G \cdot M^t= G$ donde $G$ es la matriz de la métrica.
+
+
+
+\section{Cuaterniones unitarios}
+
+Denotamos por $\mathrm{Sp}(1)$ al conjunto de los cuaterniones de norma unidad.  Este conjunto es un subgrupo respecto a la multiplicación. En forma matricial
+$$
+\mathrm{Sp}(1)=\left\{ \begin{pmatrix}
+a & b \\
+-\overline{b}& \overline{a}
+\end{pmatrix} \text{ tales que } \abs{a}^2+\abs{b}^2=1\right\}
+$$
+que coincide exactamente con el grupo $\mathrm{SU}(2)$. En el modelo real
+$$
+\mathrm{Sp}(1)=\{a+bi+cj+dk \text{ tales que } a^2+b^2+c^2+d^2=1\}
+$$
+lo que demuestra que el conjunto soporte del grupo es la esfera $S^3 \subset \R^4$.
+El cálculo del inverso de un cuaternión unitario es muy simple, puesto que
+$$
+q^{-1}= \frac{\overline{q}}{N(q)}= \overline{q}
+$$
+
+
+    
+    \begin{lema} 
+
+Todo cuaternión unitario se puede escribir  en la forma
+$$
+q= \cos(\theta/2)+ \sen(\theta/2)\mathbf{u} 
+$$ siendo  $\mathbf{u}$  un vector unitario.
+
+
+\end{lema}
+
+\dem
+
+Todo cuaternión admite una descomposición en la forma $q=a+\mathbf{v}$, donde $\mathbf{v}$ es un vector no necesariamente unitario. Normalizando dicho vector podemos escribir el mismo cuaternión en la forma $q= a+ \lambda \mathbf{u}$ donde $\mathbf{u}$ si es unitario.  Si calculamos la norma de este vector obtenemos $N(q) = \abs{a}^2+ \abs{\lambda}^2$. Si el cuaternión es unitario tenemos que 
+$$
+\abs{a}^2+\abs{\lambda}^2=1
+$$
+y podemos encontrar un único ángulo $\theta$ que cumpla las condiciones 
+$$
+a= \sen(\theta/2)\qquad \lambda= \cos(\theta/2)
+$$
+demostrando el resultado. \fin 
+
+\noindent{\bf Observación.}
+
+\smallskip
+
+Otros autores intentan encontrar un ángulo que cumplan
+$$
+a= \sen(\theta)\qquad \lambda= \cos(\theta)
+$$
+Como existen dos ángulos que cumplen la condición anterior, para obtener una solución única deben considerar únicamente ángulos menores que dos rectos. El desarrollo de toda la teoría es enteramente similar.
+
+\bigskip
+
+Si $\mathbf{n}$ es un cuaternión imaginario unitario, tenemos que $\mathbf{n} \cdot \mathbf{n}=-1$ y las potencias siguientes se pueden calcular del mismo modo.  Podemos definir la exponencial de un vector $\theta \mathbf{n}$ utilizando el desarrollo en serie de la exponencial.  En este caso no vamos a tener ningún problema de convergencia.  Calculemos la exponencial
+$$
+1+ \theta \mathbf{n}+ \frac{\theta^2 \mathbf{n}^2}{2}+ \frac{\theta^3 \mathbf{n}^3}{3!}+\frac{\theta^4\mathbf{n}^4}{4!}+ \frac{\theta^5\mathbf{n}^5}{5!} \dots
+$$
+donde hemos tenido en cuenta que $\theta$ y $\mathbf{n}$ conmutan. Utilizando el conocimiento de las potencias de $\mathbf{n}$ y sacando factor común $\mathbf{n}$ se obtiene
+$$
+\left(1-\frac{\theta^2}{2}+\frac{\theta^4}{4!} + \cdots\right)+ \left(\theta+-\frac{\theta^3}{3!}+ \frac{\theta^5}{5!}+ \cdots\right) \mathbf{n}
+$$
+que son precisamente las series del seno y del coseno.
+
+\begin{cor}
+
+Si $\mathbf{n}$ es un vector unitario, entonces
+$$
+\exp(\theta \mathbf{n})= \cos(\theta)+ \sen(\theta)\mathbf{n}
+$$
+
+\end{cor}
+
+Utilizando el lema anterior, observamos que todo elemento del grupo $\mathrm{Sp}(1)$ se puede escribir como la exponencial de un cuaternión imaginario.  Este cuaternión imaginario no es único, debido a la periodicidad de las funciones trigonométricas.
+
+
+\section{Cuaterniones y rotaciones}
+
+El cuerpo  de cuaterniones actua sobre si misma por conjugación. Dicha operación respeta gran parte de las estructuras de las que está dotado el cuerpo de cuaterniones.  En particular conserva la estructura euclídea.
+
+
+\begin{propo}
+
+Dado $q\in\mathrm{Sp}(1)$ denotamos por $R_q:\mathrm{Im}(\cua) \rightarrow \mathrm{Im}(\cua)$ a la función $R_q(u)= quq^{-1}$.  La aplicación
+$$
+\begin{array}{cccc}
+R: & \mathrm{Sp}(1)& \rightarrow & \mathrm{SO}(3,\R)\\
+   & q & \rightarrow& R_q
+   \end{array}
+   $$
+es un morfismo de grupos epiyectivo con núcleo $\Z_2$.
+
+\end{propo}
+
+\dem
+
+Dividiremos la demostración en varios pasos simples, pues este esquema se utilizará  más adelante.
+
+\smallskip
+
+$\qquad$ 1) $R_q$ deja invariante $\mathrm{Im}(\cua)$.
+
+\noindent $u \in \mathrm{Im}(\cua)$ si y solo si $\mathrm{Tr}(u)=0$.  Calculamos la traza de $R_q(u)$
+$$
+\mathrm{Tr}(R_q(u))= \mathrm{Tr}(quq^{-1})= \mathrm{Tr}(qq^{-1}u) = \mathrm{Tr}(u)= 0
+$$
+
+
+$\qquad$  2) $R_q$ es lineal y biyectiva.
+   
+   \noindent Es $\R$-lineal, puesto que $\R$ pertenece al centro de $\cua$.  Si $R_q(u)=0$, entonces $quq^{-1}=0$ y despejando $u$ obtenemos que $u=0$.  $R_q$ es inyectiva y por razones dimensionales también es epiyectiva.
+   
+   
+   
+   \smallskip
+   
+$\qquad$  3) $R_q$ es una isometría.
+   
+   \noindent Para que una aplicación conserve el producto escalar basta con que conserve la norma que induce dicho producto escalar. Como $N(q)= \norma{q}^2$, basta con la conservación de la norma cuaterniónica.
+   $$
+   N(R_q(u))= \det(quq^{-1})= \det(u)= N(u)
+   $$
+   
+   
+   
+   
+   
+   
+   $\qquad$  4) $R$ es morfismo de grupos.
+   
+   \noindent Tenemos que demostrar que  $R_{qr}= R_qR_r$.  
+   $$
+   R_{qr}(h) = (qr) h \ (qr)^{-1}= q rh r^{-1} q^{-1}= qR_rq^{-1}= R_q R_r(h)
+   $$
+   
+ 
+   
+ 
+   
+ $\qquad$ 5) Núcleo de $R$
+   
+    \noindent Si $q$ está en el núcleo tenemos.
+    $$
+    R_q(u)= u \quad \text{ si y solo si }\quad q uq^{-1}=u \quad \text{ si y solo si } \quad qu=uq
+    $$
+    El núcleo es entonces $\mathrm{Ker}(R)= \mathrm{Sp}(1)\cap \R= \{\mathrm{Id},-\mathrm{Id}\}$
+    
+    \smallskip
+    
+   $\qquad$  6) Epiyectividad.
+   
+ La demostraremos a continuación. \fin
+    
+
+    
+    
+    Hemos visto que a todo cuaternión de módulo unidad se le puede asociar una rotación.  Estamos interesados en conocer efectivamente cual es dicha rotación.  Recordemos que una rotación del espacio euclídeo tridimensional viene determinado por dos datos: el primero es el eje de giro y el segundo es el ángulo  de giro.   
+
+\begin{propo}
+
+Sea $\mathbf{v}$ imaginario y unitario. La rotación correspondiente al cuaternión 
+$$
+q= \cos(\theta/2)+ \sen(\theta/2)\mathbf{v}
+$$
+tiene por eje la recta generada por el vector $\mathbf{v}$ y  por ángulo  de giro $\theta$.
+
+\end{propo}
+
+\dem
+
+Como $q$ es unitario, $q^{-1}=\overline{q}$. Veamos que $\mathbf{v}$ permanece invariante por la acción de $q$. 
+$$
+R_q(v)= q\cdot \mathbf{v}\cdot \overline{q}=(\cos(\theta/2)+ \sen(\theta/2)\mathbf{v})\cdot \mathbf{v}\cdot (\cos(\theta/2)- \sen(\theta/2)\mathbf{v})=\mathbf{v}
+$$
+donde hemos tenido en cuenta que $\mathbf{v}\cdot\mathbf{v}=-1$.
+
+\smallskip
+
+Si $\mathbf{u}$ es un vector unitario y ortogonal a $\mathbf{v}$, entonces
+$$
+R_q(\mathbf{u})= q\cdot \mathbf{u}\cdot \overline{q}= \cos(\theta)\cdot \mathbf{u}+ \sen(\theta)\cdot \mathbf{v} \wedge \mathbf{u}
+$$
+Como $\{\mathbf{v},\mathbf{u},\mathbf{v\wedge u}\}$ es una base positivamente orientada, el efecto de $R_q$ sobre el plano perpendicular a $\mathbf{v}$ es una rotación de ángulo $\theta$. \fin
+
+
+
+    \noindent{\bf Observación.}
+    
+    \smallskip
+
+Este resultado nos permite demostrar que $R:\mathrm{Sp}(1) \rightarrow \mathrm{SO}(3,\R)$ es epiyectiva.  Dada una rotación  arbitraria $A$ (que no sea la identidad) tendrá un eje y un ángulo de giro.  Si $\mathbf{v}$ es un vector unitario del eje y $\theta$ el ángulo de giro, se tiene que 
+$R_q=A$, donde  $q= \cos(\theta/2)+\sen(\theta/2)\cdot \mathbf {v}$. \fin
+
+
+\section{Dimensión 4}
+    
+    Del mismo modo $\cua$ es un modelo de espacio euclídeo de dimensión cuatro.  Siguiendo argumentos análogos se demuestra la 
+    
+    \begin{propo}
+    
+    La aplicación 
+    $$
+    \begin{array}{cccc}
+    R: & \mathrm{Sp}(1) \times \mathrm{Sp}(1) & \rightarrow & \mathrm{SO}(4, \R)\\
+     & (q_1,q_2) & \rightarrow & R_{q_1,q_2}
+     \end{array}
+     $$
+     donde $R_{q_1,q_2}(u)= q_1\cdot u\cdot q_2^{-1}$, es un morfismo de grupos  epiyectivo cuyo núcleo es $\Z_2$.
+     
+     \end{propo}
+     
+     
+   \dem
+   
+   Los primeros pasos son similares. Demostraremos únicamente la epiyectividad.
+     
+     Denotemos por $\lambda_q$ la aplicación $\lambda_q(r) = qr$.  Si $q$ es unitario, esta aplicación es una isometría de $\cua$, por conservar la norma cuaternionica.  Sea $A$ una isometría arbitraria de $\cua$.  El cuaternión $q= A(1)$ es de norma unidad.  La composición $\lambda_{\overline{q}}A$ es una isometría que cumple
+     $$
+     \lambda_{\overline{q}}A(1)= \lambda_{\overline{q}}(q)=1
+     $$
+     y deja invariante el subespacio $\R$.  Por lo tanto también deja invariante su ortogonal, que es $\mathrm{Im}(\cua)$.  Por la proposición anterior $\lambda_{\overline{q}} A= R_r$ y esto prueba la epiyectividad. \fin
+     
+     
+     \section{Geometría de Minkoski}
+     
+     En sus trabajos sobre relatividad especial, Minkoski multiplicó la coordenada temporal por la unidad imaginaria.  Operando formalmente, al calcular la norma de un vector, aparecían tres cuadrados con signo más y uno con signo menos. Sin en vez de multiplicar la coordenada temporal por $i$,  multiplicamos las otras tres por $i$ obtenemos también un modelo del espacio de Minkoski. Vamos a seguir esta intuición para construir un modelo matricial de una métrica de signatura $(3,1)$. 
+     
+     Sea $F$ el subespacio real de $M_2(\C)$ generado por las matrices
+     $$
+1=
+\begin{pmatrix}
+ 1 & 0 \\
+0& 1
+\end{pmatrix}
+\qquad \alpha= 
+\begin{pmatrix}
+1 & 0 \\
+0 & -1
+\end{pmatrix}
+\qquad
+\beta=
+\begin{pmatrix}
+ 0 & -i \\
+i& 0
+\end{pmatrix}
+\qquad \gamma= 
+\begin{pmatrix}
+0 & 1 \\
+1 & 0
+\end{pmatrix}
+$$
+Todo elemento de $F$ se expresa como
+$$
+a1+b\alpha+c\beta+d\gamma= \begin{pmatrix}
+a-b & ic-d\\
+-ic-d& a+b
+\end{pmatrix}
+$$
+ Pero este espacio $F$ que acabamos de construir no es ni más ni menos que el subespacio de las matrices hermíticas bidimensionales. Si calculamos el determinante de un elemento de este espacio obtenemos $a^2-b^2-c^2-d^2$.  Hemos construido un modelo de espacio de signatura $(3,1)$ donde la forma cuadrática se calcula con un determinante. Además la base que hemos construido es ortogonal respecto a este producto escalar. En la siguiente proposición se pueden probar todos los detalles, salvo la epiyectividad, que nos conduciría  a un estudio más detallado de la geometría de Minkoski, que no vamos a abordar en este momento.
+ 
+ \begin{propo}
+
+Sea
+$$
+\begin{array}{cccc}
+R:& \mathrm{Sl}(2, \C)& \rightarrow & \mathrm{O}(\mathrm{Herm}(2))\\
+    & g & \rightarrow & R_g
+    \end{array}
+    $$
+    donde $R_g(u)= g\cdot u\cdot g^*$.  $R$ es un morfismo epiyectivo sobre la componente conexa  de la unidad con núcleo $\Z_2$. 
+    
+    
+ \end{propo}
+ 
+
+
+
+
+
+ 
+ 
+ El espacio $F'$ generado por las matrices $\{1,\alpha,\gamma\}$ es justamente el ortogonal a $\beta$. Si $g\in \mathrm{Sl}(2,\R)$ se tiene que $R_g(\beta)=\beta$ y por lo tanto induce una isometría del espacio $F'$ que es un modelo de espacio con signatura $(2,1)$. Con estas observaciones se prueba la
+ 
+ 
+  \begin{propo}
+
+Sea
+$$
+\begin{array}{cccc}
+R:& \mathrm{Sl}(2, \R)& \rightarrow & \mathrm{O}(2,1)\\
+    & g & \rightarrow & R_g
+    \end{array}
+    $$
+    donde $R_g(u)= g\cdot u\cdot g^t$.  $R$ es un morfismo epiyectivo sobre la componente conexa con núcleo $\Z_2$.
+    
+    
+ \end{propo}
+ 
+ 
+ 
+ \noindent{\bf Observación.}
+ 
+ \smallskip
+ 
+ Para aquellos que dominen la teoría de los grupos de Lie, esbozaremos una prueba de la epiyectividad de todos los morfismos con los que hemos trabajado. 
+ 
+ Es claro que todos los grupos con los que hemos tratado son subgrupos cerrados de grupos matriciales y por lo tanto son grupos de Lie (teorema del subgrupo cerrado de Cartan). Los morfismos de grupos son asimismo diferenciables.  Como los grupos entre los que actua el morfismo son de la misma dimensión y  tienen núcleo discreto, la diferencial del morfismo es un isomorfismo de álgebras de Lie. Integrando dichos morfismos  se construye un isomorfismo local entre entornos de la unidad. Se concluye entonces la epiyectividad sobre la componente conexa.
+ 
+ \newpage
+ 
+ \section*{Problemas}
+ 
+
+\begin{pro}
+
+Sea $q \in \mathrm{Sp}(1)$. La aplicación
+$$
+\begin{array}{cccc}
+\lambda_q :& \cua & \rightarrow & \cua \\
+  & Y& \rightarrow& qY
+  \end{array}
+  $$
+  es una isometría.  Demostrar que la multiplicación por la derecha, $\rho_q$, es también una isometría.
+  
+  \end{pro}
+  
+  \begin{pro}
+  
+  Encontrar la matriz de $\lambda_q$ en la base estandard.  Demostrar que los vectores fila de dicha matriz son perpendiculares entre si.  Si $q$ tiene módulo unidad, entonces la matriz es ortogonal.  Probar también que su determinante es positivo.  Concluir que $\lambda_q$ y $\rho_q$ pertenecen a $\mathrm{SO}(4,\R)$ si $q$ es unitario.
+  
+  \end{pro}
+  
+  \begin{pro}
+  
+  Demostrar que matricialmente $\lambda_{\overline{q}}= (\lambda_q)^t$.  Utilizar este hecho para demostrar que $\lambda_q$ es una matriz ortogonal si $q$ es unitario.
+  
+  \end{pro}
+  
+  
+
+
+
+
+
+\begin{pro}
+
+Pretendemos demostrar que todo automorfismo de álgebras de $\cua$ es un rotación de $\mathrm{Im}(\cua)$ y viceversa.
+
+\begin{itemize}
+
+\item Si $q$ es unitario entonces $R_q$ es un automorfismo de álgebras ( $\mathrm{SO}(\mathrm{Im}(\cua) \subset \mathrm{Aut}(\cua)$)
+
+
+
+
+\item Sabiendo que $q \in \mathrm{Im}(\cua) \Leftrightarrow q \cdot q \leq 0$ demostrar que todo automorfismo  deja invariante el subespacio imaginario y sobre $\R$ es la identidad.
+
+\item Si $\varphi$ es automorfismo, entonces $\{\varphi(i),\varphi(j),\varphi(k)\}$  es una base ortonormal del hiperplano imaginario. Demostrar que dicha base está positivamente orientada, lo que implica la inclusión que nos faltaba.
+
+
+
+\end{itemize}
+
+\end{pro}
+
+
+\begin{pro}
+
+Sea $\xi_q$ el endomorfismo adjunto
+$$
+\xi_q(p) =qpq^{-1}
+$$
+Demostrar que $\xi_q=\xi_r$ si y solo si $q$ y $r$ son proporcionales.
+
+\end{pro}
+
+\begin{pro}
+
+Probar que 
+$$
+\mathrm{Re}(p)=\mathrm{Re}(qpq^{-1})
+$$
+y que
+$$
+\mathrm{N}(\mathrm{Im}(p))= \mathrm{N}(\mathrm{Im}(qpq^{-1}))
+$$
+
+\end{pro}
+
+\begin{pro}
+
+Si $q$ es un cuaternión puro de norma unidad, entonces $R_q$ es el giro de $\pi$ radianes alrededor del eje $q$.  Como estas rotaciones generan el grupo de las rotaciones, esta es otra forma de demostrar la epiyectividad de la aplicación $R$.
+
+
+\end{pro}
+
+\begin{pro}
+
+Si $q$ es un cuaternión imaginario puro, entonces
+$$
+\sigma(r)=-q\cdot r\cdot q^{-1}
+$$
+es la simetría respecto al hiperplano perpendicular a $q$.  Como el grupo ortogonal está generado por simetrías, utilizar este resultado para probar la epiyectividad del morfismo $R:\mathrm{Sp}(1)\rightarrow \mathrm{SO}(3,\R)$.
+
+\end{pro}
+
+\begin{pro}
+
+Sea $q=a+\mathbf{v}$ un cuaternión no necesariamente unitario.  $R_q$ es una rotación cuyo eje es $\langle \mathbf{v}\rangle$ y cuyo ángulo de giro $\theta$ se obtiene de 
+$$
+\tan\left(\frac{\theta}{2}\right)=\frac{\sqrt{N(\mathbf{v})}}{\abs{a}}
+$$
+
+\end{pro}
+
+\begin{pro}
+
+Dados dos cuaterniones imaginarios puros, $q$ y $q'$, que tengan la misma norma, existe un cuaternión imaginario $r$ puro tal $q'=r\cdot q\cdot r^{-1}$
+
+\end{pro}
+
+\newpage
+
+\section{Extensiones finitas no conmutativas}
+
+De ahora en adelante supondremos que  $\R \hookrightarrow K$ es una extensión finita,  posiblemente no conmutativa y que $\R$ está contenido en el centro de $K$, lo que equivale a que todo número real conmute con todo elemento de $K$. La siguiente definición es una generalización del concepto ya estudiado en el caso complejo y cuarternionico.
+
+\begin{defi}
+
+En las condiciones anteriores, decimos que un elemento $u \in K$ es {\sf imaginario} si  $u^2 = u \cdot u $ es un número real menor o igual que cero.  El conjunto de todos los elementos imaginarios lo denotaremos por $I$.
+
+\end{defi}
+
+
+Fijaremos la siguiente notación: las letras $\lambda$ y $\mu$ denotarán  números reales.  La letra $z$ denotará un elemento arbitrario de $K$ y $u $ y $v$ denotarán  elementos imaginarios.
+
+\bigskip
+
+\noindent{\bf Propiedades.}
+
+\begin{itemize}
+
+\item Si $u \in I$ y $\lambda \in \R$ entonces $\lambda \cdot u$ es imaginario, puesto que
+$$
+(\lambda \cdot u)^2= \lambda^2 \cdot u^2 \leq 0
+$$
+donde hemos utilizado que los números reales conmutan con los elementos de la extensión.
+
+\item Si $u$ es imaginario, entonces su inverso también lo es:
+$$
+(u^{-1})^2 u^2= 1 \quad \Rightarrow \quad (u^{-1})^2 \leq 0
+$$
+
+\item Si $z \in \R \cap I$, entonces $z=0$.
+
+\end{itemize}
+
+En el caso de los complejos y de los cuaterniones, se tiene que todo elemento se puede descomponer como  suma de un número real y un  elemento imaginario. En general se tiene
+
+\begin{lema}\label{lema:unicidad}
+
+Todo elemento $z \in K$ se puede escribir, de modo único, en la forma
+$$
+z= \lambda+ u \text{ con } \lambda \in \R \text{ y } u \in I
+$$
+
+\end{lema}
+
+\dem
+
+Sea $p(x)$ el polinomio mínimo de $z$. Como el polonomio es irreducible, entonces puede ser un polinomio de primer grado, o bien un polinomio de segundo grado sin raices reales. Estudiemos ambos casos.
+
+\smallskip
+
+Su $p(x)$ es de primer grado, es de la forma $x-\lambda$. Entonces
+$$
+p(z)=0 \quad \Rightarrow \quad z-\lambda=0 \quad \Rightarrow \quad z=\lambda +0
+$$
+y obtenemos la descomposición.
+
+\smallskip
+
+Si $p(x)$ es de segundo grado, entonces es de la forma $x^2-2\lambda x+\mu$ con $\lambda^2-\mu <0$.  Entonces el vector $z-\lambda$ cumple
+$$
+(z-\lambda)^2= z^2-2\lambda z+\lambda^2 = \lambda^2-\mu < 0
+$$
+y por lo tanto es un vector imaginario.  Denotemoslo por $u$. Entonces
+$$
+z-\lambda= u \quad \Rightarrow \quad z= \lambda+ u
+$$
+y obtenemos de nuevo la descomposición.
+
+\smallskip
+
+Pasemos ya a demostrar la unicidad. Supongamos que admite otra descomposición $z= \mu+v$. Restando obtenemos que
+$$
+u= v+(\mu - \lambda)
+$$
+Elevando al cuadrado
+$$
+u^2= v^2+2v(\mu - \lambda) + (\mu - \lambda)^2
+$$
+que escribimos en la forma
+$$
+u^2-v^2-(\mu - \lambda)^2= 2 v (\mu - \lambda)
+$$
+El primer miembro es real y el segundo imaginario. Ambos deben ser nulos. Obtenemos que
+$$
+2 v (\mu - \lambda)=0
+$$
+lo que implica $v=0$ o que $(\lambda - \mu)=0$.  De cualquiera de las dos condiciones se deduce rápidamente la unicidad. \fin 
+
+
+\begin{lema}
+
+Sean $u$ y $v$ dos vectores imaginarios. Entonces $uv+vu$ es un número real.
+
+\end{lema}
+
+\dem
+
+Supongamos que $u$, $v$ y $1$ son linealmente dependientes.  Tenemos una relación
+$$
+a u + bv +c=0 \quad \Rightarrow \quad a u= -c-b v
+$$
+Por la unicidad del lema anterior, como $a u $ es imaginario, necesariamente $c=0$.  Entonces o bien $a$ o bien $b$ son no nulos.  Supongamos que $a$ es no nulo. Entonces
+$$
+u= -\frac{b}{a} v
+$$
+e inmediatamente se deduce que 
+$$
+uv+vu= -\frac{b}{a} vv+ v \left( -\frac{b}{a}\,  v\right) = \frac{2b}{a}
+$$
+que es un número real.
+
+\smallskip
+
+Supongamos ahora que los vectores son linealmente independientes.  Descomponiendo tenemos
+$$
+uv+vu= \lambda + w 
+$$
+Veamos que necesariamente $w$ es nulo, pues en caso contrario se llega a una contradicción. Formamos una combinación lineal, tomando dos números reales $r$ y $s$ no nulos y descomponemos 
+$$
+r u+ s v= \mu + w' 
+$$
+Elevamos al cuadrado
+$$
+r^2u^2+s^2v^2+rs(uv+vu)= \mu^2+  w'^2+2\mu w'
+$$
+Extrayendo la parte imaginaria de ambas expresiones obtenemos
+$$
+rsw= 2\mu w'
+$$
+Sustituyendo, obtenemos que
+$$
+ru+sv= \mu+\frac{rs}{2\mu} w
+$$
+identidad válida para valor de $r$ y de $s$.  Tomamos otros valores de las constantes $r'$ y $s'$ que no sean proporcionales a los que hemos elegido en primera instancia.  Tenemos entonces
+$$
+r'u+s'v= \mu'+\frac{r's'}{2\mu'} w
+$$
+Multiplicando por un factor adecuado $c$ podemos conseguir que los últimos sumandos de ambas expresiones sean iguales.  Restando se obtiene
+$$
+(r-cr')u+(s-cs')v= (\mu-c \mu')
+$$
+Como las constantes no son proporcionales, se obtiene que $u$, $v$ y $1$ son linealmente dependientes, lo que es contradictorio. \fin 
+
+\begin{cor}
+
+Si $u$ y $v$ son imaginarios, entonces $u+v$ también.  El conjunto $I$ es un subespacio vectorial suplementario de $\R$.
+
+\end{cor}
+
+\dem
+
+Si $u$, $v$ y $1$ son linealmente dependientes, entonces $u$ y $v$ son proporcionales y su suma es imaginaria.
+
+\smallskip
+
+
+Si $u$, $v$ y $1$ no son linealmente independientes, con las notaciones del lema anterior, si $w$ es nulo, entonces $2 \mu w'$ también es nulo. El vector $w'$ no puede ser nulo, pues de lo contrario la terna de vectores volvería a ser linealmente dependiente.  Solo queda la posibilidad de que $\mu$ sea nulo.  
+
+\smallskip
+
+
+La invariancia en la multiplicación por escalares ya está demostrada y el lema \ref{lema:unicidad} prueba que son suplementarios. \fin 
+
+\section{El teorema de Frobenius}
+
+
+Supongamos que en $I$ existan dos vectores $u$ y $v$ tales que 
+$$
+u^2=-1 \qquad v^2=-1 \qquad w= uv \in I
+$$
+En estas condiciones, los vectores $u$, $v$ y $w$ cumplen las reglas de conmutación de la base canónica $\{i,j,k\}$ de los cuaterniones imaginarios.
+
+Demostremos primeramente que el inverso de $uv$ es precisamente $vu$
+$$
+(uv)(vu)= u (-1) u=(-1)(-1)=1
+$$
+Entonces 
+$$
+uv+vu= uv+ (uv)^{-1}
+$$
+Hemos visto que el primer miembro es real y el segundo es imaginario.  Ambos son nulos. Por lo tanto 
+$$
+uv=-vu
+$$
+
+
+
+\end{document}
+
+
+
+
